@@ -48,8 +48,10 @@
 		</dependency>
 
 		<!-- 热部署 -->
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
-			</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
 
 		<!-- 访问静态资源 -->
 		<dependency>
@@ -145,6 +147,13 @@
 			<version>dingtalk-SNAPSHOT</version>
 			<scope>system</scope>
 			<systemPath>${pom.basedir}/lib/taobao-sdk-java-auto_1479188381469-20180926-source.jar</systemPath>
+		</dependency>
+
+		<!-- jwt -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.7.0</version>
 		</dependency>
 	</dependencies>
 
