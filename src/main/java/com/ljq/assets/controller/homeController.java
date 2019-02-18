@@ -29,6 +29,7 @@ import com.dingtalk.api.response.OapiUserSimplelistResponse;
 import com.ljq.assets.config.URLConstant;
 import com.ljq.assets.util.AccessTokenUtil;
 import com.ljq.assets.util.ServiceResult;
+import com.ljq.assets.util.jwtUtil;
 import com.taobao.api.ApiException;
 
 import io.swagger.annotations.Api;
@@ -77,12 +78,17 @@ public class homeController {
 			OapiDepartmentGetResponse oapiDepartmentGetResponse = getUserDepartment(accessToken,
 					stringBuffer.toString());
 
+			String userIdOU = oapiUserGetResponse.getUserid();
+			String userNameOU = oapiUserGetResponse.getName();
+			String token = jwtUtil.sgin(userNameOU, userIdOU);
+
 			Map<String, Object> resultMap = new HashMap<>();
-			resultMap.put("userId", oapiUserGetResponse.getUserid());
-			resultMap.put("userName", oapiUserGetResponse.getName());
+			resultMap.put("userId", userIdOU);
+			resultMap.put("userName", userNameOU);
 			resultMap.put("userDepartment", oapiDepartmentGetResponse.getName());
 			resultMap.put("avatar", oapiUserGetResponse.getAvatar());
 			resultMap.put("position", oapiUserGetResponse.getPosition());
+			resultMap.put("token", token);
 
 			ServiceResult serviceResult = ServiceResult.success(resultMap);
 

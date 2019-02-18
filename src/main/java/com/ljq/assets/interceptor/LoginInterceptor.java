@@ -30,7 +30,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (null != token) {
 			boolean result = jwtUtil.verify(token);
 			if (result) {
-				System.out.println("-----------成功--------");
 				return true;
 			}
 		}
