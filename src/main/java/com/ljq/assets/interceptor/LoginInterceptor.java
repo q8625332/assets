@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ljq.assets.util.jwtUtil;
 
 @Component
+@SuppressWarnings({ "unused" })
 public class LoginInterceptor implements HandlerInterceptor {
 
 	private static final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 
-	@SuppressWarnings("unused")
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

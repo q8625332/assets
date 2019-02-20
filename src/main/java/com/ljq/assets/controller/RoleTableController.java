@@ -31,6 +31,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/roleTableController")
 @Api(value = "角色表 前端控制器", tags = "角色表", description = "角色表组")
+@SuppressWarnings({ "rawtypes" })
 public class RoleTableController {
 
 	@Resource

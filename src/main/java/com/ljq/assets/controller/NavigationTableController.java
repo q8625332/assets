@@ -148,7 +148,8 @@ public class NavigationTableController {
 					}
 				}
 
-				List<NavigationTable> navigationTableList2 = iNavigationTableService.getNavByIdList(navIdAll2);
+				// List<NavigationTable> navigationTableList2 =
+				// iNavigationTableService.getNavByIdList(navIdAll2);
 				// HttpSession session = request.getSession();
 				// session.setAttribute(Constant.USER_NAVIGATIONTABLELIST,
 				// navigationTableList2);

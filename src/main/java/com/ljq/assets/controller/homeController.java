@@ -82,12 +82,17 @@ public class homeController {
 			String userNameOU = oapiUserGetResponse.getName();
 			String token = jwtUtil.sgin(userNameOU, userIdOU);
 
+			OapiDepartmentListResponse qymc = getDepartmentList(accessToken, "1");
+
+			String enterpriseName = qymc.getDepartment().get(0).getName();
+
 			Map<String, Object> resultMap = new HashMap<>();
 			resultMap.put("userId", userIdOU);
 			resultMap.put("userName", userNameOU);
 			resultMap.put("userDepartment", oapiDepartmentGetResponse.getName());
 			resultMap.put("avatar", oapiUserGetResponse.getAvatar());
 			resultMap.put("position", oapiUserGetResponse.getPosition());
+			resultMap.put("enterpriseName", enterpriseName);
 			resultMap.put("token", token);
 
 			ServiceResult serviceResult = ServiceResult.success(resultMap);
