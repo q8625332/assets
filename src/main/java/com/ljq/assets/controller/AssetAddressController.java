@@ -30,9 +30,9 @@ public class AssetAddressController {
 	@Resource
 	private IAssetAddressService iAssetAddressService;
 
-	@ApiOperation(value = "添加资产位置", notes = "传入：位置名称，备注")
+	@ApiOperation(value = "添加资产位置", notes = "传入：位置名称，备注，企业id（corpid）")
 	@PostMapping("/addAssetAddress")
-	public ServiceResult addAssetAddress(AssetAddress assetAddress) {
+	public ServiceResult addAssetAddress(AssetAddress assetAddress, String corpid) {
 		boolean res = iAssetAddressService.save(assetAddress);
 		if (res) {
 			ServiceResult serviceResult = ServiceResult.success("添加资产位置成功");
