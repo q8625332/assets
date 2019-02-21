@@ -50,10 +50,11 @@ public class homeController {
 	 */
 	@ApiOperation(value = "获取用户信息", notes = "获取用户id，用户头像，用户部门，用户名字")
 	@RequestMapping(value = "/getUserInformation", method = RequestMethod.POST)
-	public ServiceResult getUserInformation(@RequestParam(value = "authCode") String requestAuthCode) {
+	public ServiceResult getUserInformation(@RequestParam(value = "authCode") String requestAuthCode,
+			@RequestParam(value = "corpid") String corpid) {
 		try {
 			// 获取access_token
-			String accessToken = AccessTokenUtil.getToken();
+			String accessToken = AccessTokenUtil.getToken(corpid);
 
 			DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_USER_INFO);
 			OapiUserGetuserinfoRequest request = new OapiUserGetuserinfoRequest();
@@ -169,11 +170,11 @@ public class homeController {
 		}
 	}
 
-	@ApiOperation(value = "获取全部人员", notes = "不用传参")
+	@ApiOperation(value = "获取全部人员", notes = "传入：corpid")
 	@PostMapping("/getAllPersonnel")
-	public ServiceResult getAllPersonnel() {
+	public ServiceResult getAllPersonnel(@RequestParam(value = "corpid") String corpid) {
 		try {
-			String accessToken = AccessTokenUtil.getToken();
+			String accessToken = AccessTokenUtil.getToken(corpid);
 			OapiDepartmentListResponse response = getDepartmentList(accessToken, "1");
 			HashSet<Map<String, Object>> mapSet = new HashSet<>();
 			for (int i = 0; i < response.getDepartment().size(); i++) {
@@ -195,11 +196,11 @@ public class homeController {
 		}
 	}
 
-	@ApiOperation(value = "获取全部部门", notes = "不用传参")
+	@ApiOperation(value = "获取全部部门", notes = "传入：corpid")
 	@PostMapping("/getAllDepartments")
-	public ServiceResult getAllDepartments() {
+	public ServiceResult getAllDepartments(@RequestParam(value = "corpid") String corpid) {
 		try {
-			String accessToken = AccessTokenUtil.getToken();
+			String accessToken = AccessTokenUtil.getToken(corpid);
 			OapiDepartmentListResponse response = getDepartmentList(accessToken, "1");
 			HashSet<Map<String, Object>> mapSet = new HashSet<>();
 			for (int i = 0; i < response.getDepartment().size(); i++) {
@@ -242,13 +243,13 @@ public class homeController {
 		return response;
 	}
 
-	@ApiOperation(value = "获取部门树", notes = "不用传值")
+	@ApiOperation(value = "获取部门树", notes = "传入：corpid")
 	@PostMapping("/branchTree")
-	public ServiceResult BranchTree() {
+	public ServiceResult BranchTree(@RequestParam(value = "corpid") String corpid) {
 		try {
 			List<Map<String, Object>> mapList = new ArrayList<>();
 			Map<String, Object> maps = null;
-			String accessToken = AccessTokenUtil.getToken();
+			String accessToken = AccessTokenUtil.getToken(corpid);
 			OapiDepartmentListIdsResponse response = getOapiDepartmentListIdsResponse(accessToken, "1");
 			if (null != response.getSubDeptIdList()) {
 				for (int i = 0; i < response.getSubDeptIdList().size(); i++) {

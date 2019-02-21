@@ -175,4 +175,9 @@ public class URLConstant {
 	 * 用户花名册
 	 */
 	public static final String URL_USER_ROSTER = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/list";
+
+	/*
+	 * 第三方企业应用获取access_token
+	 */
+	public static final String URL_ENTERPRISE_AUTHORIZATION = "https://oapi.dingtalk.com/service/get_corp_token";
 }
